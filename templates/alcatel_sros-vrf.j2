@@ -1,0 +1,36 @@
+{% for VRF in data %}
+<config>
+  <configure xmlns="urn:nokia.com:sros:ns:yang:sr:conf">
+    <service>
+      <customer>
+        <customer-name>{{VRF.CUSTOMER_NAME}}</customer-name>
+        <customer-id>{{VRF.CUSTOMER_ID}}</customer-id>
+      </customer>
+      <vprn>
+        <service-name>{{VRF.SERVICE_NAME}}</service-name>
+        <service-id>{{VRF.SERVICE_ID}}</service-id>
+        <admin-state>enable</admin-state>
+        <customer>{{VRF.CUSTOMER_NAME}}</customer>
+        <autonomous-system>{{VRF.ASN}}</autonomous-system>
+        <route-distinguisher>{{VRF.ASN}}:{{VRF.RD}}</route-distinguisher>
+        <vrf-target>
+          <community>target:{{VRF.ASN}}:{{VRF.RT}}</community>
+        </vrf-target>
+        <auto-bind-tunnel>
+          <resolution>any</resolution>
+        </auto-bind-tunnel>
+        <interface>
+          <interface-name>{{VRF.INTERFACE_NAME}}</interface-name>
+          <loopback>true</loopback>
+          <ipv4>
+              <primary>
+                  <address>{{VRF.INTERFACE_ADDRESS}}</address>
+                  <prefix-length>{{VRF.INTERFACE_PREFIX}}</prefix-length>
+              </primary>
+          </ipv4>
+        </interface>
+      </vprn>
+    </service>
+  </configure>
+</config>
+{% endfor %}

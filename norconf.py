@@ -8,13 +8,6 @@ from nornir_netconf.plugins.tasks import netconf_edit_config, netconf_get_config
 from nc_tasks import netconf_edit_config, netconf_commit
 import xmltodict, json, pprint
 
-
-# from nornir.core.plugins.connections import ConnectionPluginRegister
-
-# from nornir_netconf.plugins.connections import Netconf
-
-# ConnectionPluginRegister.register("netconf", ConnectionPluginRegister)
-
 __author__ = 'Hugo Tinoco'
 __email__ = 'hugotinoco@icloud.com'
 
@@ -24,19 +17,36 @@ nr = InitNornir('config.yml')
 # Filter the hosts by the 'west-region' site key.
 west_region = nr.filter(region='west-region')
 
-def get_vrf(task, servicename):
-    ''' Retrieve interfaces from IOS and NOKIA devices(Base).
+def get_vrfcli(task, servicename):
+    ''' Retrieve VRF from IOSXR
     '''
-    if task.host.platform == 'iosxr':
-        vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
-        print(vrf)
+    vrf = task.run(netmiko_send_command, command_string=f"sh vrf {servicename} detail")
+    print_result(vrf)
 
-    elif task.host.platform == 'alcatel_sros':
-        vrf = task.run(netmiko_send_command, command_string= f"show service id {servicename} base")
-        print(vrf)
+def get_vprncli(task, servicename):
+    ''' Retrieve VPRN from Nokia
+    '''
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base")
+    print_result(vprn)
+
+def cli_stats(task, **kwargs):
+    ''' Revert to CLI scraping automation to retrieve simple show commands and verify status of Services / L3 connectivity.
+    '''
+    # Load Yaml file to extract specific vars
+    vars_yaml = f"vars/{task.host}.yml"
+    vars_data = task.run(task=load_yaml, file=vars_yaml)
+
+    # Capture the Service Name:
+    servicename = vars_data.result['VRF'][0]['SERVICE_NAME']
+
+    if task.host.platform == 'alcatel_sros':
+        get_vprncli(task, servicename)
+
+    elif task.host.platform == 'iosxr':
+        get_vrfcli(task, servicename)
 
     else:
-        print(f"{task.host} | {task.host.platform} not supported in this runbook.")
+        print(f"{task.host.platform} Not supported in this runbook")
 
 def nc_getvprn(task, servicename, customerid, serviceid=None):
     ''' Validate and compare the intended customer against the 7750 core device.
@@ -65,11 +75,10 @@ def nc_getvprn(task, servicename, customerid, serviceid=None):
         else: 
             pass
     except Exception as e:
-        print(f'Error with nc_getcust function:: {e}')
+        print(f'Error with nc_getvprn function:: {e}')
 
 def iac_render(task):
     ''' Load the YAML vars and render the Jinja2 Templates. Deploy L3VPN/VPRN via NETCONF.
-    Once configuration is committed, validate via Netmiko / simple show commands.
     '''
     
     # Load Yaml Files by Hostname
@@ -116,23 +125,21 @@ def iac_render(task):
         if task.host.platform == 'alcatel_sros':
             nc_getvprn(task, serviceid=serviceid, servicename=servicename, customerid=customerid)
 
-        # Validate via Netmiko the output of the VRF/VPRNs on both devices:
-        # get_vrf(task, servicename=servicename)
+        elif task.host.platform =='iosxr':
+            pass
+            # Duplicate the getvprn function but for iosxr
 
     elif rpcreply != rpcreply.ok:
         print(rpcreply)
 
     else:
-        print("NETCONF Error.")
+        print(f"NETCONF Error. {rpcreply}")
 
 def main():
 
-    complete = west_region.run(task=iac_render)
-    print(complete)
+    west_region.run(task=iac_render)
 
-    # servicename = 'AVIFI'
-
-    # print_result(west_region.run(task=get_vrf, servicename=servicename))
-
+    west_region.run(task=cli_stats)
+    
 if __name__=="__main__":
     main()

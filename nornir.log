@@ -9526,3 +9526,1243 @@ TypeError: argument of type 'RPCReply' is not iterable
 
 2020-09-22 14:03:26,501 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
 2020-09-22 16:32:31,369 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:05:08,943 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:15:33,414 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:15:50,388 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:15:59,034 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:19:08,472 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:19:26,566 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:20:23,165 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:20:59,255 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:22:07,481 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:22:22,423 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:23:50,626 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:23:56,873 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:24:13,182 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:24:14,210 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:24:14,877 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:24:19,343 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:24:19,347 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:24:36,952 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:24:37,983 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:24:38,782 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:24:43,030 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:24:43,030 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:27:57,363 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:28:03,440 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:28:03,441 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:28:03,441 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task.run(task=get_vrf, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrf (failed)
+
+
+2020-09-23 06:31:31,720 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:31:32,798 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task=get_vrf, servicename=servicename)
+TypeError: 'task' is an invalid keyword argument for print()
+
+2020-09-23 06:31:33,316 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task=get_vrf, servicename=servicename)
+TypeError: 'task' is an invalid keyword argument for print()
+
+2020-09-23 06:32:02,185 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:32:08,246 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:32:08,247 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:32:08,247 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task.run(task=get_vrf, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrf (failed)
+
+
+2020-09-23 06:32:34,885 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:32:35,965 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(get_vrf, servicename=servicename)
+TypeError: 'servicename' is an invalid keyword argument for print()
+
+2020-09-23 06:32:36,583 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(get_vrf, servicename=servicename)
+TypeError: 'servicename' is an invalid keyword argument for print()
+
+2020-09-23 06:32:46,944 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:32:53,043 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:32:53,044 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:32:53,047 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task.run(get_vrf, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrf (failed)
+
+
+2020-09-23 06:33:16,376 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:33:22,490 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:33:22,491 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:33:22,491 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 119, in iac_render
+    print(task.run(task=get_vrf, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrf (failed)
+
+
+2020-09-23 06:36:05,333 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:36:06,334 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:36:06,879 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:36:11,440 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:36:11,441 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:36:47,424 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:36:48,393 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:36:48,983 -  nornir.core -     INFO -        run() - Running task 'get_vrf' with args {'servicename': 'AVIFI'} on 2 hosts
+2020-09-23 06:36:53,490 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:36:53,491 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:37:11,489 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:37:17,503 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:37:17,504 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrf' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 31, in get_vrf
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:37:17,505 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 122, in iac_render
+    print_result(task.run(task=get_vrf, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrf (failed)
+
+
+2020-09-23 06:40:20,844 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:40:26,923 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:40:26,924 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'get_vrfcli' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 30, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:40:26,924 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 111, in iac_render
+    print_result(task.run(task=get_vrfcli, servicename=servicename))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: get_vrfcli (failed)
+
+
+2020-09-23 06:42:52,141 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:42:58,217 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:42:58,217 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 118, in iac_render
+    get_vrfcli(task, servicename)
+  File "norconf.py", line 30, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:43:45,107 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:43:51,183 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:43:51,183 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 120, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 30, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:45:20,601 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:45:26,669 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:45:26,670 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 120, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 30, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:46:48,452 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:46:54,619 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:46:54,620 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 113, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 23, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:47:32,622 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:47:38,731 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:47:38,731 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 113, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 23, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string= f"sh vrf {servicename} detail", conn_timeout = '10')
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:48:55,012 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:49:01,086 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:49:01,087 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 113, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 23, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string=f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:50:06,073 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:50:12,087 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:50:12,088 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 113, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 23, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string=f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:51:07,015 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-23 06:51:13,067 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 918, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/client.py", line 412, in connect
+    server_key = t.get_remote_server_key()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/paramiko/transport.py", line 834, in get_remote_server_key
+    raise SSHException("No existing session")
+paramiko.ssh_exception.SSHException: No existing session
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 302, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 344, in __init__
+    self._open()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 349, in _open
+    self.establish_connection()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/cisco/cisco_xr.py", line 9, in establish_connection
+    super().establish_connection(width=511, height=511)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/base_connection.py", line 948, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: Paramiko: 'No existing session' error: try increasing 'conn_timeout' to 10 seconds or larger.
+
+2020-09-23 06:51:13,068 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 113, in iac_render
+    print_result(get_vrfcli(task, servicename))
+  File "norconf.py", line 23, in get_vrfcli
+    vrf = task.run(netmiko_send_command, command_string=f"sh vrf {servicename} detail")
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:51:13,413 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 06:51:13,413 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'iac_render' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 109, in iac_render
+    get_vprncli(task,servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 06:58:12,267 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 06:58:12,271 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 06:58:12,271 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 13:58:03,972 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 13:58:03,975 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 13:58:03,976 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:01:43,001 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:01:43,005 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:01:43,005 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF']['SERVICE_NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:02:25,401 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:02:25,404 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:02:25,404 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data['VRF'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:02:32,560 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:02:43,234 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:02:49,909 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:03:00,010 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:03:00,014 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data.result['VRF']['SERVICE-NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:03:00,015 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data.result['VRF']['SERVICE-NAME'])
+TypeError: list indices must be integers or slices, not str
+
+2020-09-23 14:03:20,190 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:03:27,632 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:03:27,635 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data.result['VRF'][0]['SERVICE-NAME'])
+KeyError: 'SERVICE-NAME'
+
+2020-09-23 14:03:27,635 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 40, in cli_stats
+    print(vars_data.result['VRF'][0]['SERVICE-NAME'])
+KeyError: 'SERVICE-NAME'
+
+2020-09-23 14:03:35,501 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:04:25,311 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:04:32,099 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 14:04:32,100 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 44, in cli_stats
+    get_vprncli(task, servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 14:04:44,934 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:04:49,866 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 14:04:49,867 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 43, in cli_stats
+    get_vprncli(task, servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 14:05:02,678 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:05:07,573 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 14:05:07,574 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 43, in cli_stats
+    get_vprncli(task, servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 14:06:42,450 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:06:47,395 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 14:06:47,395 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 43, in cli_stats
+    get_vprncli(task, servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 14:08:45,222 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:08:50,162 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 32, in netmiko_send_command
+    result = net_connect.send_command(command_string, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/netmiko/utilities.py", line 363, in wrapper_decorator
+    return func(self, *args, **kwargs)
+TypeError: send_command() got an unexpected keyword argument 'conn_timeout'
+
+2020-09-23 14:08:50,162 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'cli_stats' failed with traceback:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 43, in cli_stats
+    get_vprncli(task, servicename)
+  File "norconf.py", line 29, in get_vprncli
+    vprn = task.run(netmiko_send_command, command_string=f"show service id {servicename} base", conn_timeout = 10)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2020-09-23 14:09:13,888 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:41:28,230 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:41:44,256 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-23 14:45:49,151 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-24 08:37:45,094 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-24 08:37:48,368 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts
+2020-09-24 08:38:39,329 -  nornir.core -     INFO -        run() - Running task 'iac_render' with args {} on 2 hosts
+2020-09-24 08:38:40,814 -  nornir.core -     INFO -        run() - Running task 'cli_stats' with args {} on 2 hosts

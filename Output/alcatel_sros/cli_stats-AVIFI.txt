@@ -1,3 +1,4 @@
+
 ===============================================================================
 Service Basic Information
 ===============================================================================
@@ -7,8 +8,8 @@ MACSec enabled    : no
 Name              : AVIFI
 Description       : (Not Specified)
 Customer Id       : 200                 Creation Origin   : manual
-Last Status Change: 09/18/2020 08:56:02 
-Last Mgmt Change  : 09/18/2020 08:56:02 
+Last Status Change: 02/03/2021 21:03:54 
+Last Mgmt Change  : 02/03/2021 21:03:54 
 Admin State       : Up                  Oper State        : Up
  
 Router Oper State : Up                  

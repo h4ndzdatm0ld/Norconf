@@ -1,6 +1,6 @@
 <config xmlns:xc="urn:ietf:params:xml:n:netconf:base:1.0">
   <vrfs xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-cfg">
-{% for VRF in data %}
+{% for VRF in host.CUST_VRFS.CUSTOMER %}
    <vrf>
     <vrf-name>{{ VRF.SERVICE_NAME }}</vrf-name>
     <create/>

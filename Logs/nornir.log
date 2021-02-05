@@ -1,0 +1,306 @@
+2021-02-05 19:09:05,464 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:09:05,464 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:09:05,465 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:09:05,465 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:09:05,465 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:09:10,472 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 931, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 315, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 346, in __init__
+    self._open()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 351, in _open
+    self.establish_connection()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 953, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: alcatel_sros 192.168.0.222:22
+
+
+
+2021-02-05 19:09:10,473 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'routing_validation' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 126, in routing_validation
+    ping_iosxrlo = task.run(netmiko_send_command, command_string=command)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2021-02-05 19:09:16,317 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:28:41,346 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:28:41,346 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:28:41,347 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:28:41,347 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:28:41,347 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:28:54,212 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:32:08,225 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:32:08,226 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:32:08,226 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:32:08,226 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:32:08,227 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:32:19,437 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:35:48,398 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:35:48,398 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:35:48,399 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:35:48,399 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:35:48,399 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:35:59,698 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:36:23,453 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:36:23,453 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:36:23,454 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:36:23,454 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:36:23,454 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:36:34,520 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:44:10,289 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:44:10,289 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:44:10,290 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:44:10,290 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:44:10,290 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:44:21,624 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:44:30,549 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:44:30,550 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:44:30,550 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:44:30,550 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:44:30,550 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:44:41,850 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:44:56,599 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:44:56,599 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:44:56,600 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:44:56,600 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:44:56,600 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:45:09,613 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:45:45,194 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:45:45,195 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:45:45,195 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:45:45,195 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:45:45,195 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:45:54,279 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:46:53,169 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:46:53,170 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:46:53,170 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:46:53,170 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:46:53,170 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:47:04,496 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:48:05,807 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:48:05,808 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:48:05,808 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:48:05,808 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:48:05,808 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:48:10,816 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 931, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 315, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 346, in __init__
+    self._open()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 351, in _open
+    self.establish_connection()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 953, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: alcatel_sros 192.168.0.222:22
+
+
+
+2021-02-05 19:48:10,817 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'routing_validation' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 126, in routing_validation
+    ping_iosxrlo = task.run(netmiko_send_command, command_string=command)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2021-02-05 19:48:18,861 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:48:31,475 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:48:31,475 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:48:31,476 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:48:31,476 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:48:31,476 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:48:40,126 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:52:00,271 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:52:00,272 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:52:00,272 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:52:00,272 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:52:00,273 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:52:11,225 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:53:15,655 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:53:15,655 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:53:15,656 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:53:15,656 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:53:15,656 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 19:53:26,666 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 19:56:07,365 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 19:56:07,365 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 19:56:07,365 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 19:56:07,365 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 19:56:07,366 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:02:21,259 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 20:02:21,260 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 20:02:21,260 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 20:02:21,260 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 20:02:21,260 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:02:32,017 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_ping'
+2021-02-05 20:02:32,018 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'napalm_ping' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_napalm/plugins/tasks/napalm_ping.py", line 37, in napalm_ping
+    result = device.ping(
+  File "/home/vscode/.local/lib/python3.8/site-packages/napalm/base/base.py", line 1306, in ping
+    raise NotImplementedError
+NotImplementedError
+
+2021-02-05 20:02:32,018 - nornir.core.task -    ERROR -      start() - Host 'R8_IOSXR_PE': task 'routing_validation' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 132, in routing_validation
+    task.run(task=napalm_ping, dest="3.3.3.3", vrf="AVIFI")
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: napalm_ping (failed)
+
+
+2021-02-05 20:05:33,813 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 20:05:33,813 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 20:05:33,814 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 20:05:33,814 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 20:05:33,814 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:05:56,431 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 20:05:56,432 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 20:05:56,432 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 20:05:56,432 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 20:05:56,432 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 20:06:07,094 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:08:24,860 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 20:08:24,861 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 20:08:24,861 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 20:08:24,861 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 20:08:24,862 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 20:08:29,869 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 931, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/home/vscode/.local/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/tasks/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection(CONNECTION_NAME, task.nornir.config)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 440, in get_connection
+    self.open_connection(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/inventory.py", line 492, in open_connection
+    conn_obj.open(
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir_netmiko/connections/netmiko.py", line 59, in open
+    connection = ConnectHandler(**parameters)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 315, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 346, in __init__
+    self._open()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 351, in _open
+    self.establish_connection()
+  File "/home/vscode/.local/lib/python3.8/site-packages/netmiko/base_connection.py", line 953, in establish_connection
+    raise NetmikoTimeoutException(msg)
+netmiko.ssh_exception.NetmikoTimeoutException: TCP connection to device failed.
+
+Common causes of this problem are:
+1. Incorrect hostname or IP address.
+2. Wrong TCP port.
+3. Intermediate firewall blocking access.
+
+Device settings: alcatel_sros 192.168.0.222:22
+
+
+
+2021-02-05 20:08:29,870 - nornir.core.task -    ERROR -      start() - Host 'R3_SROS_PE': task 'routing_validation' failed with traceback:
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 98, in start
+    r = self.task(self, **self.params)
+  File "norconf.py", line 126, in routing_validation
+    ping_iosxrlo = task.run(netmiko_send_command, command_string=command)
+  File "/home/vscode/.local/lib/python3.8/site-packages/nornir/core/task.py", line 168, in run
+    raise NornirSubTaskError(task=run_task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: netmiko_send_command (failed)
+
+
+2021-02-05 20:08:36,264 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:08:36,825 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'netmiko_send_command'
+2021-02-05 20:09:22,160 -  nornir.core -     INFO -        run() - Running task 'routing_validation' with args {} on 2 hosts
+2021-02-05 20:09:22,160 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'routing_validation'
+2021-02-05 20:09:22,161 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'routing_validation'
+2021-02-05 20:09:22,161 - nornir.core.task -    DEBUG -      start() - Host 'R3_SROS_PE': running task 'netmiko_send_command'
+2021-02-05 20:09:22,161 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_get'
+2021-02-05 20:09:32,846 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'napalm_validate'
+2021-02-05 20:09:33,368 - nornir.core.task -    DEBUG -      start() - Host 'R8_IOSXR_PE': running task 'netmiko_send_command'

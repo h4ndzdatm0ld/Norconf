@@ -54,7 +54,11 @@ IOSXR:
       extras:
         ssh_config_file: False
         auth_strict_key: False
-  
+    napalm:
+      username: htinoco
+      password: admin
+      platform: iosxr
+
 IOS:
   username: cisco
   password: cisco

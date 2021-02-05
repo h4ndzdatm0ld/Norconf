@@ -12,3 +12,7 @@ inventory:
     host_file: "inventory/hosts.yml"
     group_file: "inventory/groups.yml"
     defaults_file: "inventory/defaults.yml"
+
+logging:
+  log_file: Logs/nornir.log
+  level: DEBUG

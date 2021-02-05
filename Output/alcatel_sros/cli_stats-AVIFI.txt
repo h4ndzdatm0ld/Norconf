@@ -9,8 +9,8 @@ MACSec enabled    : no
 Name              : AVIFI
 Description       : (Not Specified)
 Customer Id       : 200                 Creation Origin   : manual
-Last Status Change: 02/05/2021 05:27:21 
-Last Mgmt Change  : 02/05/2021 05:27:21 
+Last Status Change: 02/05/2021 22:08:03 
+Last Mgmt Change  : 02/05/2021 22:08:03 
 Admin State       : Up                  Oper State        : Up
  
 Router Oper State : Up                  
@@ -50,4 +50,24 @@ Service Access & Destination Points
 Identifier                               Type         AdmMTU  OprMTU  Adm  Opr
 -------------------------------------------------------------------------------
 No Matching Entries
-===============================================================================
+===============================================================================ping router-instance AVIFI[5D"AVIFI[5D[5C" 3.3.3.3 
+PING 3.3.3.3 56 data bytes
+64 bytes from 3.3.3.3: icmp_seq=1 ttl=64 time=1.18ms.
+64 bytes from 3.3.3.3: icmp_seq=2 ttl=64 time=0.137ms.
+64 bytes from 3.3.3.3: icmp_seq=3 ttl=64 time=0.464ms.
+64 bytes from 3.3.3.3: icmp_seq=4 ttl=64 time=1.18ms.
+64 bytes from 3.3.3.3: icmp_seq=5 ttl=64 time=0.161ms.
+
+---- 3.3.3.3 PING Statistics ----
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min = 0.137ms, avg = 0.624ms, max = 1.18ms, stddev = 0.467msping router-instance AVIFI[5D"AVIFI[5D[5C" 1.1.1.1 
+PING 1.1.1.1 56 data bytes
+64 bytes from 1.1.1.1: icmp_seq=1 ttl=255 time=8.94ms.
+64 bytes from 1.1.1.1: icmp_seq=2 ttl=255 time=10.3ms.
+64 bytes from 1.1.1.1: icmp_seq=3 ttl=255 time=7.29ms.
+64 bytes from 1.1.1.1: icmp_seq=4 ttl=255 time=16.8ms.
+64 bytes from 1.1.1.1: icmp_seq=5 ttl=255 time=7.11ms.
+
+---- 1.1.1.1 PING Statistics ----
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min = 7.11ms, avg = 10.1ms, max = 16.8ms, stddev = 3.54ms

@@ -5,7 +5,6 @@ from nornir_utils.plugins.tasks.data import load_yaml
 from nornir_jinja2.plugins.tasks import template_file
 from nornir_napalm.plugins.tasks import napalm_validate
 from nornir_napalm.plugins.tasks import napalm_get
-from nornir_napalm.plugins.tasks import napalm_ping
 import xmltodict
 import json
 import pprint
@@ -95,14 +94,19 @@ def cli_stats(task):
     createFolder(path)
 
     if task.host.platform == "alcatel_sros":
-        vprn = task.run(
-            netmiko_send_command, command_string=f"show service id {servicename} base"
-        )
-        write_file(
-            task,
-            filename=f"{path}/{task.name}-{servicename}.txt",
-            content=str(vprn.result),
-        )
+        commands = [
+            f"show service id {servicename} base",
+            "ping router-instance AVIFI 3.3.3.3",
+            "ping router-instance AVIFI 1.1.1.1",
+        ]
+        for cmd in commands:
+            vprn = task.run(netmiko_send_command, command_string=cmd)
+            write_file(
+                task,
+                filename=f"{path}/{task.name}-{servicename}.txt",
+                content=str(vprn.result),
+                append=True,
+            )
 
     elif task.host.platform == "iosxr":
         vrf = task.run(
@@ -118,7 +122,7 @@ def cli_stats(task):
 
 def routing_validation(task):
     """Two forms of validation. Unfortunately, SROS NAPALM is not fully integrated into the major framework, so we will provide a workaround.
-    As for IOSXR, it's fully supported. Use napalm validators to ensure BGP peers are established.
+    As for IOSXR, it's supported to some degree.. Use napalm validators to ensure BGP peers are established.
     Individual test cases are stored under /tests/{host} directory."""
 
     if task.host.platform == "alcatel_sros":
@@ -126,26 +130,27 @@ def routing_validation(task):
         ping_iosxrlo = task.run(netmiko_send_command, command_string=command)
         assert "0.00% packet loss" in ping_iosxrlo.result
 
-    elif task.host.platform == 'iosxr':
+    elif task.host.platform == "iosxr":
         task.run(task=napalm_get, getters=["get_bgp_neighbors"])
         task.run(task=napalm_validate, src=f"tests/{task.host}-compliance.yml")
 
-        command = 'ping 3.3.3.3 vrf AVIFI'
+        command = "ping 3.3.3.3 vrf AVIFI"
         ping_sros = task.run(netmiko_send_command, command_string=command)
         assert "Success rate is 100 percent" in ping_sros.result
 
     else:
         return "platform not specified or supported."
 
+
 def main():
 
     createFolder("Logs")
 
-    # print_result(west_region.run(task=data_validation))
+    print_result(west_region.run(task=data_validation))
 
-    # print_result(west_region.run(task=nc_deployment))
+    print_result(west_region.run(task=nc_deployment))
 
-    # print_result(west_region.run(task=cli_stats))
+    print_result(west_region.run(task=cli_stats))
 
     print_result(west_region.run(task=routing_validation))
 

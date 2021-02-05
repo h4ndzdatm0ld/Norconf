@@ -1,3 +1,4 @@
+show service id AVIFI[5D"AVIFI[5D[5C" base 
 
 ===============================================================================
 Service Basic Information
@@ -8,8 +9,8 @@ MACSec enabled    : no
 Name              : AVIFI
 Description       : (Not Specified)
 Customer Id       : 200                 Creation Origin   : manual
-Last Status Change: 02/03/2021 21:03:54 
-Last Mgmt Change  : 02/03/2021 21:03:54 
+Last Status Change: 02/05/2021 05:27:21 
+Last Mgmt Change  : 02/05/2021 05:27:21 
 Admin State       : Up                  Oper State        : Up
  
 Router Oper State : Up                  

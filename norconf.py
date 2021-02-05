@@ -35,177 +35,51 @@ def createFolder(directory):
         print("Error: Creating directory. " + directory)
 
 
-def nc_deployment(task):
-    """Load the YAML vars and render the Jinja2 Templates. Deploy L3VPN/VPRN via NETCONF."""
+def data_validation(task):
+    """Load the input YAML data and validates"""
 
-    # Load Yaml file to extract specific vars
+    # Load Data
     loaded_data = task.run(task=load_yaml, file=f"data/{task.host}.yml")
     # Store the contents as a host dict
-    task.host['CUST_VRFS'] = loaded_data.result
+    task.host["CUST_VRFS"] = loaded_data.result
+
+    for cust, data in task.host["CUST_VRFS"].items():
+        for vrf in data:
+            assert vrf["ASN"]
+            assert vrf["RD"]
+            assert vrf["RT"]
+
+def nc_deployment(task):
+    """Render the templates for VPRN/L3VPN deployment. """
+
     # Assign a template based on device platform.
     template = f"{task.host.platform}-vrf.j2"
-    # Rendering Template
+
     vrf = task.run(
         task=template_file,
         path="templates/",
         template=template,
     )
-    # Extract the custom data.target attribute passed into the group of hosts to specifcy 'candidate' target
-    # configuration store to run the edit_config rpc against on our task.device.
 
-    # IOSXR/Nokia take advantage of candidate/lock via netconf.
+    # Extract the custom data.target attribute passed into the group of hosts to specifcy 'candidate' target
+    # configuration store to run the edit_config rpc against on our device.
     deploy_config = task.run(
         task=netconf_edit_config, target=task.host["target"], config=str(vrf.result)
     )
 
-    # # # Extract the new Service ID Created:
-    # if task.host.platform == "alcatel_sros":
-    #     for vrf in vars_data.result["VRF"]:
-    #         serviceid = vrf["SERVICE_ID"]
-    #         servicename = vrf["SERVICE_NAME"]
-    #         # Ensure the customer - id is always interpreted as a string:
-    #         customer = vrf["CUSTOMER_ID"]
-    #         customerid = str(customer)
-
-    # if task.host.platform == "iosxr":
-    #     for vrf in vars_data.result["VRF"]:
-    #         servicename = vrf["SERVICE_NAME"]
-    #         serviceid = None
-
-    # rpcreply = deploy_config.result
-
-    # # if 'ok' in result:
-    # if rpcreply.ok:
-
-    #     print(f"NETCONF RPC = OK. Committing Changes:: {task.host.platform}")
-    #     task.run(task=netconf_commit)
-
-    #     # Validate service on the 7750.
-    #     if task.host.platform == "alcatel_sros":
-    #         nc_getvprn(
-    #             task,
-    #             serviceid=serviceid,
-    #             servicename=servicename,
-    #             customerid=customerid,
-    #         )
-
-    #     elif task.host.platform == "iosxr":
-    #         pass
-    #         # Duplicate the getvprn function but for iosxr
-
-    # elif rpcreply != rpcreply.ok:
-    #     print(rpcreply)
-
-    # else:
-    #     print(f"NETCONF Error. {rpcreply}")
-
-
-def nc_getvprn(task, servicename, customerid, serviceid=None):
-    """Validate and compare the intended customer against the 7750 core device."""
-    r = task.run(task=netconf_get_config)
-    config = r.result
-    dict_config = xmltodict.parse(config)
-    try:
-        customers = dict_config["data"]["configure"]["service"]["customer"]
-        for cust in customers:
-            if cust["customer-id"] == customerid:
-                print(f"SR Customer: {cust['customer-name']}")
-                print(f"SR Customer ID: {cust['customer-id']}")
-            elif cust["customer-id"] != customerid:
-                pass
-            else:
-                print("Can't find {customerid}")
-        services = dict_config["data"]["configure"]["service"]["vprn"]
-        for vprn in services:
-            if vprn["service-name"] == servicename:
-                print(f"SR Service Name: {servicename}")
-            elif vprn["service-name"] != servicename:
-                pass
-            else:
-                print(f"Can't find Service: {servicename}")
-        else:
-            pass
-    except Exception as e:
-        print(f"Error with nc_getvprn function:: {e}")
-
-
-    """Load the YAML vars and render the Jinja2 Templates. Deploy L3VPN/VPRN via NETCONF."""
-
-    # Load Yaml Files by Hostname
-    vars_yaml = f"vars/{task.host}.yml"
-    vars_data = task.run(task=load_yaml, file=vars_yaml)
-
-    # With the YAML variables loaded, render the Jinja2 Template with the previous function: iac_render.
-    template = f"{task.host.platform}-vrf.j2"
-
-    vprn = task.run(
-        task=template_file,
-        path="templates/",
-        template=template,
-        data=vars_data.result["VRF"],
-    )
-
-    # Convert the generated template into a string.
-    payload = str(vprn.result)
-
-    # Extract the custom data.target attribute passed into the group of hosts to specifcy 'candidate' target
-    # configuration store to run the edit_config rpc against on our task.device.
-    # IOSXR/Nokia take advantage of candidate/lock via netconf.
-    deploy_config = task.run(
-        task=netconf_edit_config, target=task.host["target"], config=payload
-    )
-
-    # # Extract the new Service ID Created:
-    if task.host.platform == "alcatel_sros":
-        for vrf in vars_data.result["VRF"]:
-            serviceid = vrf["SERVICE_ID"]
-            servicename = vrf["SERVICE_NAME"]
-            # Ensure the customer - id is always interpreted as a string:
-            customer = vrf["CUSTOMER_ID"]
-            customerid = str(customer)
-
-    if task.host.platform == "iosxr":
-        for vrf in vars_data.result["VRF"]:
-            servicename = vrf["SERVICE_NAME"]
-            serviceid = None
-
-    rpcreply = deploy_config.result
-
-    # if 'ok' in result:
-    if rpcreply.ok:
-
-        print(f"NETCONF RPC = OK. Committing Changes:: {task.host.platform}")
+    if "<ok/>" in deploy_config.result:
         task.run(task=netconf_commit)
-
-        # Validate service on the 7750.
-        if task.host.platform == "alcatel_sros":
-            nc_getvprn(
-                task,
-                serviceid=serviceid,
-                servicename=servicename,
-                customerid=customerid,
-            )
-
-        elif task.host.platform == "iosxr":
-            pass
-            # Duplicate the getvprn function but for iosxr
-
-    elif rpcreply != rpcreply.ok:
-        print(rpcreply)
-
+        return f"NETCONF RPC = OK. Committing Changes:: {task.host.platform}"
     else:
-        print(f"NETCONF Error. {rpcreply}")
-
+        return f"NETCONF Error. {rpcreply}"
 
 def cli_stats(task):
-    """Revert to CLI scraping automation to retrieve simple show commands and verify status of Services / L3 connectivity."""
-    # Load Yaml file to extract specific vars
-    # Load Yaml file to extract specific vars
-    data = f"data/{task.host}.yml"
-    loaded_data = task.run(task=load_yaml, file=data)
+    """Simple CLI commands to validate and save output"""
 
-    # Capture the Service Name:
-    servicename = loaded_data.result["VRF"][0]["SERVICE_NAME"]
+    # Extract servicename and perform show commands 
+    for cust, data in task.host["CUST_VRFS"].items():
+        for vrf in data:
+            servicename = vrf['SERVICE_NAME']
 
     # Path to save output: This path will be auto-created for your below>
     path = f"Output/{task.host.platform}"
@@ -237,15 +111,26 @@ def cli_stats(task):
     else:
         print(f"{task.host.platform} Not supported in this runbook")
 
+def routing_validation(task):
+
+    if task.host.platform == "alcatel_sros":
+        command = 'ping router-instance "AVIFI" 1.1.1.1'
+
+        ping_iosxrlo = task.run(
+            netmiko_send_command, command_string=command
+        )
+        assert '0.00% packet loss' in ping_iosxrlo.result
+
 
 def main():
 
-    # west_region.run(task=nc_getvprn)
+    print_result(west_region.run(task=data_validation))
 
-    west_region.run(task=nc_deployment)
+    print_result(west_region.run(task=nc_deployment))
 
-    # west_region.run(task=cli_stats)
+    print_result(west_region.run(task=cli_stats))
 
+    print_result(west_region.run(task=routing_validation))
 
 if __name__ == "__main__":
     main()

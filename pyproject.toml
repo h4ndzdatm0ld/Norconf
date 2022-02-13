@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "norconf"
+version = "0.1.0"
+description = ""
+authors = ["Hugo Tinoco <htinoco@devpop.localdomain>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+nornir-netconf = "^1.0.1"
+nornir-utils = "^0.1.2"
+nornir = "^3.2.0"
+nornir-jinja2 = "^0.2.0"
+xmltodict = "^0.12.0"
+nornir-napalm = "^0.1.2"
+nornir-netmiko = "^0.1.2"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

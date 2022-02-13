@@ -1,24 +1,13 @@
+import os
+
 from nornir import InitNornir
+from nornir_jinja2.plugins.tasks import template_file
+from nornir_napalm.plugins.tasks import napalm_get, napalm_validate
+from nornir_netconf.plugins.tasks import netconf_commit, netconf_edit_config
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir_utils.plugins.functions import print_result
 from nornir_utils.plugins.tasks.data import load_yaml
-from nornir_jinja2.plugins.tasks import template_file
-from nornir_napalm.plugins.tasks import napalm_validate
-from nornir_napalm.plugins.tasks import napalm_get
-import xmltodict
-import json
-import pprint
-import os
 from nornir_utils.plugins.tasks.files import write_file
-from nornir_scrapli.tasks import (
-    netconf_lock,
-    netconf_unlock,
-    netconf_edit_config,
-    netconf_get,
-    netconf_get_config,
-    netconf_rpc,
-    netconf_commit,
-)
 
 __author__ = "Hugo Tinoco"
 __email__ = "hugotinoco@icloud.com"
@@ -56,7 +45,7 @@ def data_validation(task):
 
 
 def nc_deployment(task):
-    """Render the templates for VPRN/L3VPN deployment. """
+    """Render the templates for VPRN/L3VPN deployment."""
 
     # Assign a template based on device platform.
     template = f"{task.host.platform}-vrf.j2"

@@ -17,6 +17,10 @@ nornir-netmiko = "^0.1.2"
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
 isort = "^5.10.1"
+flake8 = "^4.0.1"
+pylint = "^2.12.2"
+pydocstyle = "^6.1.1"
+yamllint = "^1.26.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

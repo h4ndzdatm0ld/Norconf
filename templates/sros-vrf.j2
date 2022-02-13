@@ -12,13 +12,19 @@
         <admin-state>enable</admin-state>
         <customer>{{VRF.CUSTOMER_NAME}}</customer>
         <autonomous-system>{{VRF.ASN}}</autonomous-system>
-        <route-distinguisher>{{VRF.ASN}}:{{VRF.RD}}</route-distinguisher>
-        <vrf-target>
-          <community>target:{{VRF.ASN}}:{{VRF.RT}}</community>
-        </vrf-target>
-        <auto-bind-tunnel>
-          <resolution>any</resolution>
-        </auto-bind-tunnel>
+        <vprn-type>regular</vprn-type>
+        <bgp-ipvpn>
+          <mpls>
+            <admin-state>enable</admin-state>
+            <route-distinguisher>{{VRF.ASN}}:{{VRF.RD}}</route-distinguisher>
+            <vrf-target>
+              <community>target:{{VRF.ASN}}:{{VRF.RT}}</community>
+            </vrf-target>
+            <auto-bind-tunnel>
+              <resolution>any</resolution>
+            </auto-bind-tunnel>
+          </mpls>
+        </bgp-ipvpn>
         <interface>
           <interface-name>{{VRF.INTERFACE_NAME}}</interface-name>
           <loopback>true</loopback>

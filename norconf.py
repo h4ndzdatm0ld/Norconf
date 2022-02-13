@@ -1,3 +1,4 @@
+"""Norconf. NETCONF Implementation against SROS / IOSXR for L3VPNs."""
 import os
 
 from nornir import InitNornir
@@ -18,7 +19,8 @@ nr = InitNornir("config.yml")
 west_region = nr.filter(region="west-region")
 
 
-def createFolder(directory):
+def create_folder(directory):
+    """Create Folder."""
     try:
         if not os.path.exists(directory):
             os.makedirs(directory)
@@ -28,25 +30,23 @@ def createFolder(directory):
 
 def data_validation(task):
     """Load the input YAML data and validate required values are present."""
-
     # Load Data
     loaded_data = task.run(task=load_yaml, file=f"data/{task.host}.yml")
     # Store the contents as a host dict
     task.host["CUST_VRFS"] = loaded_data.result
 
-    for cust, data in task.host["CUST_VRFS"].items():
+    for _, data in task.host["CUST_VRFS"].items():
         for vrf in data:
             assert vrf["ASN"]
             assert vrf["RD"]
             assert vrf["RT"]
-            assert type(vrf["ASN"]) == int
-            assert type(vrf["RD"]) == int
-            assert type(vrf["RT"]) == int
+            assert isinstance(vrf["ASN"], int)
+            assert isinstance(vrf["RD"], int)
+            assert isinstance(vrf["RT"], int)
 
 
 def nc_deployment(task):
     """Render the templates for VPRN/L3VPN deployment."""
-
     # Assign a template based on device platform.
     template = f"{task.host.platform}-vrf.j2"
 
@@ -55,34 +55,36 @@ def nc_deployment(task):
         path="templates/",
         template=template,
     )
+    
 
-    # Extract the custom data.target attribute passed into the group of hosts to specifcy 'candidate' target
-    # configuration store to run the edit_config rpc against on our device.
+    # Extract the custom data.target attribute passed into the group of hosts
+    # to specifcy 'candidate' target configuration store to run the edit_config
+    # rpc against on our device.
     deploy_config = task.run(
-        task=netconf_edit_config, target=task.host["target"], config=str(vrf.result)
+        task=netconf_edit_config,
+        target=task.host["target"],
+        config=str(vrf.result),
+        xmldict=True,
     )
+    print(dir(deploy_config.result["rpc"]))
+    print(deploy_config.result["rpc"])
+    print(type(deploy_config.result['rpc']))
 
-    # Ensure the RPC REPLY was successfull before we commit our changes.
-    if "<ok/>" in deploy_config.result:
-        task.run(task=netconf_commit)
-        return f"NETCONF RPC = OK. Committing Changes:: {task.host.platform}"
-    else:
-        return f"NETCONF Error. {rpcreply}"
-
+    # if deploy_config.result["xml_dict"]["ok"]:
+    #     commit = task.run(task=netconf_commit)
 
 def cli_stats(task):
-    """Simple CLI commands to validate and save output"""
-
+    """CLI commands to validate and save output."""
     # Extract servicename and perform show commands
-    for cust, data in task.host["CUST_VRFS"].items():
+    for _, data in task.host["CUST_VRFS"].items():
         for vrf in data:
             servicename = vrf["SERVICE_NAME"]
 
     # Path to save output: This path will be generated.
     path = f"Output/{task.host.platform}"
-    createFolder(path)
+    create_folder(path)
 
-    if task.host.platform == "alcatel_sros":
+    if task.host.platform == "sros":
         commands = [
             f"show service id {servicename} base",
             "ping router-instance AVIFI 3.3.3.3",
@@ -102,18 +104,24 @@ def cli_stats(task):
             netmiko_send_command, command_string=f"sh vrf {servicename} detail"
         )
         write_file(
-            task, filename=f"{path}/{task.name}-{servicename}.txt", content=str(vrf)
+            task,
+            filename=f"{path}/{task.name}-{servicename}.txt",
+            content=str(vrf),
         )
 
-    else:
-        return f"{task.host.platform} Not supported in this runbook"
+    # else:
+    #     return f"{task.host.platform} Not supported in this runbook"
 
 
 def routing_validation(task):
-    """Two forms of validation. Unfortunately, SROS NAPALM is not fully integrated into the major framework, so we will provide a workaround.
-    As for IOSXR, it's supported to some degree.. Use napalm validators to ensure BGP peers are established.
-    Individual test cases are stored under /tests/{host} directory."""
+    """Two forms of validation.
 
+    Unfortunately, SROS NAPALM is not fully integrated into the major framework,
+    so we will provide a workaround.
+    As for IOSXR, it's supported to some degree.. Use napalm validators
+    to ensure BGP peers are established.
+    Individual test cases are stored under /tests/{host} directory.
+    """
     if task.host.platform == "alcatel_sros":
         command = 'ping router-instance "AVIFI" 1.1.1.1 rapid'
         ping_iosxrlo = task.run(netmiko_send_command, command_string=command)
@@ -127,21 +135,14 @@ def routing_validation(task):
         ping_sros = task.run(netmiko_send_command, command_string=command)
         assert "Success rate is 100 percent" in ping_sros.result
 
-    else:
-        return "platform not specified or supported."
-
 
 def main():
-
-    createFolder("Logs")
-
-    print_result(west_region.run(task=data_validation))
-
+    """Execute the main function."""
+    create_folder("Logs")
+    west_region.run(task=data_validation)
     print_result(west_region.run(task=nc_deployment))
-
-    print_result(west_region.run(task=cli_stats))
-
-    print_result(west_region.run(task=routing_validation))
+    # print_result(west_region.run(task=cli_stats))
+    # print_result(west_region.run(task=routing_validation))
 
 
 if __name__ == "__main__":

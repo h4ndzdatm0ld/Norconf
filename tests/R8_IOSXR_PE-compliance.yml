@@ -1,5 +1,4 @@
 ---
-
 - get_bgp_neighbors:
     global:
       router_id: 10.10.10.8

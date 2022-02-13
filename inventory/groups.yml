@@ -1,67 +1,35 @@
-## Nornir Groups File 
+## Nornir Groups File
 ---
-CSR: 
-  username: 'cisco'
-  password: 'cisco'
-  platform: ios
-  port: 22
-
 NOKIA:
-  username: 'admin'
-  password: 'admin'
-  platform: alcatel_sros
+  username: "admin"
+  password: "admin"
+  platform: "sros"
   port: 22
   data:
     target: candidate
   connection_options:
     netconf:
-      port: 830
-      username: netconf
-      password: NCadmin123
       extras:
-        allow_agent: false
+        port: 830
         hostkey_verify: false
-        look_for_keys: false
-    scrapli_netconf:
-      port: 830
-      username: netconf  
-      password: NCadmin123
-      extras:
-        auth_strict_key: False
-        ssh_config_file: False
-      platform: alu
-      
-IOSXR:
-  username: htinoco
-  password: admin
-  platform: iosxr
-  port: 22
-  data:
-    target: candidate
-  connection_options:
-    netconf:
-      port: 830
-      username: htinoco
-      password: admin
-      extras:
+        timeout: 300
         allow_agent: false
-        hostkey_verify: false
         look_for_keys: false
-    scrapli_netconf:
-      port: 830
-      username: htinoco
-      password: admin
-      extras:
-        ssh_config_file: False
-        auth_strict_key: False
-    napalm:
-      username: htinoco
-      password: admin
-      platform: iosxr
 
-IOS:
-  username: cisco
-  password: cisco
-  platform: ios
+IOSXR:
+  username: "clab"
+  password: "clab@123"
+  platform: "iosxr"
   port: 22
-  
+  data:
+    target: candidate
+  connection_options:
+    netconf:
+      extras:
+        allow_agent: false
+        hostkey_verify: false
+        look_for_keys: false
+    napalm:
+      username: "clab"
+      password: "clab@123"
+      platform: "iosxr"
